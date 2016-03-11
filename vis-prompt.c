@@ -16,7 +16,7 @@ bool vis_prompt_cmd(Vis *vis, const char *cmd) {
 	{
 		bool ret = vis_cmd(vis, cmd+1);
 		if (ret && vis->mode->visual)
-			vis_mode_switch(vis, VIS_MODE_NORMAL);
+			;//vis_mode_switch(vis, VIS_MODE_NORMAL);
 		return ret;
 	}
 	default:
