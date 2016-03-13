@@ -103,7 +103,7 @@ const char *sam_error(enum SamError err) {
 		[SAM_ERR_UNMATCHED_BRACE] = "Unmatched `}'",
 		[SAM_ERR_REGEX]           = "Bad regular expression",
 		[SAM_ERR_TEXT]            = "Bad text",
-		[SAM_ERR_COMMAND]         = "Unknown command",
+		[SAM_ERR_COMMAND]         = "Unknown sam command",
 		[SAM_ERR_EXECUTE]         = "Error executing command",
 	};
 
