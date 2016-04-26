@@ -569,69 +569,8 @@ sequence will be discarded.
 Lua API for in process extension
 ================================
 
-Vis provides a simple Lua API for in process extension. At startup the
-`visrc.lua` file is executed, this can be used to register a few event
-callbacks which will be invoked from the editor core. While executing
-these user scripts the editor core is blocked, hence it is intended for
-simple short lived (configuration) tasks.
-
-At this time there exists no API stability guarantees.
-
- - `vis`
-   - `MODE_NORMAL`, `MODE_OPERATOR_PENDING`, `MODE_INSERT`, `MODE_REPLACE`, `MODE_VISUAL`, `MODE_VISUAL_LINE` mode constants
-   - `mode` current mode (one of the above constants)
-   - `lexers` LPeg lexer support module
-   - `events` hooks
-     - `start()`
-     - `quit()`
-     - `win_open(win)`
-     - `win_close(win)`
-     - `theme_change(name)`
-   - `files()` iterator
-   - `win` currently focused window
-   - `windows()` iterator
-   - `command(cmd)`
-   - `info(msg)` display a single line message
-   - `message(msg)` display an arbitrarily long message
-   - `open(filename)`
-   - `textobject_register(function)` register a Lua function as a text object, returns associated `id` or `-1`
-   - `textobject(id)` select/execute a text object
-   - `motion_register(function)` register a Lua function as a motion, returns associated `id` or `-1`
-   - `motion(id)` select/execute a motion
-   - `command_register(name, function(argv, force, win, cursor, range))` hook up a Lua function to `:name` command
-   - `map(mode, key, function)` map a Lua function to `key` in `mode`
-   - `feedkeys(keys)` interpret `keys` as if they were read from the keyboard. If called from a key handling function, the keys will only be processed *after* the current key handling function has returned.
- - `file`
-   - `content(pos, len)` or `content({start, finish})`
-   - `insert(pos, data)`
-   - `delete(pos, len)` or `delete({start, finish})`
-   - `lines_iterator()`
-   - `name`
-   - `lines[0..#lines+1]` array giving read/write access to lines
-   - `newlines` type of newlines either `"nl"` or `"crnl"`
-   - `size` current file size in bytes
-   - `modified` whether the file contains unsaved changes
- - `window`
-   - `file`
-   - `cursors_iterator()`
-   - `cursors[1..#cursors]` array giving read access to all cursors
-   - `cursor` primary cursor
-   - `syntax` lexer name used for syntax highlighting or `nil`
- - `cursor`
-   - `line` (1 based), `col` (1 based)
-   - `to(line, col)`
-   - `pos` bytes from start of file (0 based)
-   - `number` one based index of cursor
-   - `selection` read/write access to selection represented as a `range`
- - `range` denoted by absolute postions in bytes from the start of the file,
-   an invalid range is represented as `nil`
-   - `start`
-   - `finish`
-
-Most of the exposed objects are managed by the C core. Allthough there
-is a simple object life time management mechanism in place, it is still
-recommended to *not* let the Lua objects escape from the event handlers
-(e.g. by assigning to global Lua variables).
+See the (documentation)[https://github.com/martanne/vis/tree/master/doc/lua_api.md]
+for information.
 
 Text management using a piece table/chain
 =========================================
