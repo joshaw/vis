@@ -1,11 +1,11 @@
 Lua API for in process extension
 ================================
 
-Vis provides a simple Lua API for in process extension. At startup the 
-`visrc.lua` file is executed, this can be used to register a few event callbacks 
-which will be invoked from the editor core. While executing these user scripts 
-the editor core is blocked, hence it is intended for simple short lived 
-(configuration) tasks.
+Vis provides a simple Lua API for in process extension. At startup the
+`visrc.lua` file is executed, this can be used to register a few event
+callbacks which will be invoked from the editor core. While executing
+these user scripts the editor core is blocked, hence it is intended for
+simple short lived (configuration) tasks.
 
 At this time there exists no API stability guarantees.
 
@@ -35,11 +35,11 @@ At this time there exists no API stability guarantees.
         - Every time a window is closed
         - The window is passed as the argument
     - Example
-    ```
-    vis.events.win_open = function(win)
-        vis:info('File name of new window is ' .. win.file.name)
-    end
-    ```
+      ```lua
+      vis.events.win_open = function(win)
+          vis:info('File name of new window is ' .. win.file.name)
+      end
+      ```
 - `vis.win`
     - `window` object representing the currently focused window
 - `vis:command(cmd)`
@@ -48,24 +48,25 @@ At this time there exists no API stability guarantees.
 - `vis:command_register(name, function(argv, force, win, cursor, range))`
     - Hook up a Lua function to `:name` command
     - `argv`: arguments passed to the function
-    - `force`: `true` if the function was invoked with !
+    - `force`: true if the function was invoked with `!`
     - `win`: the current `window`, where the command was run from
     - `cursor`: the current set of `cursor`s active
     - `range`: the range that was used when running the command as byte offsets 
       from the start of the file
     - Example
-    ```
-    vis:command_register("foo", function(argv, force, win, cursor, range)
-        for i,arg in ipairs(argv) do
-            print(i..": "..arg)
-        end
-        print("was command forced with ! "..(force and "yes" or "no"))
-        print(win.file.name)
-        print(cursor.pos)
-        print(range ~= nil and ('['..range.start..', '..range.finish..']') or "invalid range")
-        return true;
-    end)
-    ```
+      ```lua
+      vis:command_register("foo", function(argv, force, win, cursor, range)
+          for i,arg in ipairs(argv) do
+              print(i..": "..arg)
+          end
+          print("was command forced with ! "..(force and "yes" or "no"))
+          print(win.file.name)
+          print(cursor.pos)
+          print(range ~= nil and ('['..range.start..', '..range.finish..']') or "invalid range")
+          return true;
+      end)
+      ```
+    
 - `vis:files()`
     - Iterator over all files currently open
 - `vis:info(msg)`
@@ -77,12 +78,12 @@ At this time there exists no API stability guarantees.
     - `key`: key to map to
     - `function`: function to execute when key `key` is pressed
     - Example
-    ```
-    vis:map(vis.MODE_NORMAL, "Q", function(
-        vis:info('You pressed Q')
-        end
-    )
-    ```
+      ```lua
+      vis:map(vis.MODE_NORMAL, "Q", function(
+          vis:info('You pressed Q')
+          end
+      )
+      ```
 - `vis:message(msg)`
     - Display an arbitrarily long message
 - `vis:motion(id)`
