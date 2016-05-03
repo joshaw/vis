@@ -67,6 +67,10 @@ At this time there exists no API stability guarantees.
       end)
       ```
     
+- `vis:feedkeys(keys)`
+    - Interpret `keys` as if they were read from the keyboard.
+    - If called from a key handling function, the keys will only be processed 
+      *after* the current key handling function has returned
 - `vis:files()`
     - Iterator over all files currently open
 - `vis:info(msg)`
@@ -109,7 +113,7 @@ At this time there exists no API stability guarantees.
 - `file.lines[1..#lines]`
     - Array giving read and write access to lines in the file
 - `file.modified`
-	- True if the file has unsaved changes
+    - True if the file has unsaved changes
 - `file.newlines`
     - Type of newlines, either `"nl"` or `"crnl"`
 - `file.size`
