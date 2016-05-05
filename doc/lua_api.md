@@ -26,6 +26,9 @@ At this time there exists no API stability guarantees.
     - Functions that are run following specific events during vis execution
     - `vis.events.start()`
         - Once at startup after the ui is initialised
+    - `vis.events.theme_change(name)`
+        - After the theme is set with `set theme x`
+        - The name of the new theme is passed as the argument
     - `vis.events.quit()`
         - Once before exiting
     - `vis.events.win_open(win)`
