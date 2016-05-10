@@ -429,6 +429,17 @@ err:
 	return 1;
 }
 
+static int getreg(lua_State *L) {
+	Vis *vis = obj_ref_check(L, 1, "vis");
+	const char *keys = luaL_checkstring(L, 2);
+	enum VisRegister regid;
+	keys = key2register(vis, keys, &regid);
+	size_t len;
+	const char *data = vis_register_get(vis, regid, &len);
+	lua_pushstring(L, data);
+	return 1;
+}
+
 static int motion(lua_State *L) {
 	Vis *vis = obj_ref_check(L, 1, "vis");
 	enum VisMotion id = luaL_checkunsigned(L, 2);
