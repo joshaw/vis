@@ -249,6 +249,9 @@ vis.ftdetect.filetypes = {
 	nim = {
 		ext = { "%.nim$" },
 	},
+	ninja = {
+		ext = { "%.ninja$" },
+	},
 	nsis = {
 		ext = { "%.nsh$", "%.nsi$", "%.nsis$" },
 	},
